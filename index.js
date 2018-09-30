@@ -1,8 +1,10 @@
-const genres = require('./module/genres');
+const genres = require('./route/genres');
+const users = require('./route/users');
 const express = require('express');
 const app = express();
 
 app.use('/api/genres', genres);
+app.use('/api/users', users);
 app.use(express.json())
 
 const PORT = 4000;
