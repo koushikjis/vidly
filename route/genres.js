@@ -28,11 +28,12 @@ async function createGenre (name){
 
     try{
         const result = await genre.save();
+        console.log(result);
     }
     catch(e){
         console.log(e.message);
+        return 1
     }
-    console.log(result);
 };
 
 async function getGenre(id){
