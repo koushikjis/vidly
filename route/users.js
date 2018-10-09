@@ -1,12 +1,8 @@
 const Joi = require ('joi');
-const mongoose = require('mongoose');
 const express = require('express');
 const route = express.Router();
+const mongoose = require('../module/database');
 route.use(express.json());
-
-mongoose.connect('mongodb://localhost/vidly', {useNewUrlParser:true})
-    .then (()=>{console.log('Connect to Mongo...')})
-    .catch((err)=>{console.log("Failed to connect", err)});
 
 const User = mongoose.model('User', new mongoose.Schema({
     isGold: Boolean,
@@ -43,6 +39,10 @@ route.post('/', (req, res) => {
     createUser(user);
 
     res.status(200).send(user);
+});
+
+route.put('/:id', (req, res)=>{
+	console.log(req.param.id);
 })
 
 async function createUser(user){

@@ -1,12 +1,8 @@
-const mongoose = require('mongoose');
+const mongoose = require('../module/database');
 const Joi = require ('joi');
 const express = require('express');
 const route = express.Router();
 route.use(express.json())
-
-mongoose.connect('mongodb://localhost/vidly', {useNewUrlParser:true})
-.then (()=> console.log('Connected to MongoDB..'))
-.catch((err)=>console.log('Failed to connect...', err));
 
 const genreSchema = new mongoose.Schema({
     name: {

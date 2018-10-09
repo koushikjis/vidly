@@ -1,12 +1,8 @@
 const Joi = require ('joi');
-const mongoose = require('mongoose');
 const express = require('express');
 const route = express.Router();
+const mongoose = require('../module/database');
 route.use(express.json());
-
-mongoose.connect('mongodb://localhost/vidly', {useNewUrlParser:true})
-    .then (()=>{console.log("Connected to DB...")})
-    .catch(err=>{console.log("Failed to connect...", err)});
 
 const genreSchema = new mongoose.Schema({
     name: {
@@ -34,8 +30,13 @@ async function addMovie(movie){
     })
 
     return await newMovie.save();
-    
 }
+
+route.get('/', (req, res) => {
+    Movie.find().select('title genre.name -_id')
+        .then((result)=> {res.status(200).send(result)})
+        .catch ((err)=>{res.status(500).send(err.message)})
+})
 
 route.post('/', async (req, res)=>{
     const { error } = validateMovie(req.body);
