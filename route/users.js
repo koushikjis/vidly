@@ -1,7 +1,7 @@
 const Joi = require ('joi');
 const express = require('express');
 const route = express.Router();
-const mongoose = require('../module/database');
+const mongoose = require('../models/database');
 route.use(express.json());
 
 const User = mongoose.model('User', new mongoose.Schema({

@@ -1,4 +1,4 @@
-const mongoose = require('../module/database');
+const mongoose = require('../models/database');
 const Joi = require ('joi');
 const express = require('express');
 const route = express.Router();
